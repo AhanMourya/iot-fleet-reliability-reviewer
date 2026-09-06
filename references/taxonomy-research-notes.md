@@ -59,7 +59,7 @@ with the repo layout in Project Plan V2 Section 11.
   certificates
 - Used to ground S3, S4, S6
 
-**Domain/field experience (Glocol):**
+**Domain/field experience (prior fleet-engineering work):**
 - Raspberry Pi / Greengrass sensor fleet deployment experience, as previously
   described to Claude, informed prioritization of P1 (SD card corruption from
   unclean shutdown) and C1/C4 (reconnect and offline-buffering behavior) as
@@ -130,7 +130,7 @@ with the repo layout in Project Plan V2 Section 11.
    — defensible either way; revisit if eval corpus scenarios show reviewers
    expect it under Connectivity.
 2. **P1 severity default (High, not Critical)** — assumes distributed power per
-   device rather than shared site power. If Glocol-style deployments (or the
+   device rather than shared site power. If prior-experience-style deployments (or the
    eval corpus) commonly describe shared power infrastructure across many
    units, this default may need to shift toward Critical with an explicit
    scope-escalation note, rather than being a documented edge case.

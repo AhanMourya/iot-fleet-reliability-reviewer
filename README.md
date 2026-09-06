@@ -16,7 +16,7 @@ not the thing being built.
 ## Origin
 
 This project is grounded in real experience deploying Raspberry Pi sensor
-fleets on AWS Greengrass at a company called Glocol. While running physical
+fleets on AWS Greengrass in a professional engineering role. While running physical
 devices at scale, a small, recurring set of preventable failure modes kept
 showing up — dropped connections with no reconnect path, updates with no
 rollback, default credentials left in place, power loss corrupting local
@@ -69,7 +69,7 @@ The taxonomy is grounded in a real research pass, documented in
 public postmortems and incident analyses (Mirai and the XiongMai
 default-credential root cause, OTA-bricking case studies from Android AOSP
 and fleet-management vendors, certificate-expiry outage patterns,
-watchdog-timer design literature), cross-checked against the Glocol field
+watchdog-timer design literature), cross-checked against the field
 experience that motivated the project, with candidate patterns that turned
 out to be too generic, unsupported, or undetectable from free text
 explicitly rejected and documented rather than silently dropped.

@@ -44,7 +44,7 @@ issue with no shared trigger. Do not downgrade by default; require the plan to s
 the independence explicitly.
 **Sources:** EMQX/HiveMQ reconnect docs; Merobix reconnect-loop troubleshooting
 guide (general context on how reconnect gaps manifest in real fleets).
-**Derivation:** Published evidence + field experience (Glocol Pi/Greengrass
+**Derivation:** Published evidence + field experience (prior hands-on Pi/Greengrass
 deployments directly motivated prioritizing this pattern).
 
 ---
@@ -145,7 +145,7 @@ buffer size/data rate, which the reviewer should note in the finding's `Risk`
 field even though it doesn't change the assigned tier by default (per the locked
 rubric's cross-cutting rules).
 **Sources:** Ellenex MQTT explainer (buffering/keep-alive context); general field
-pattern also independently supported by Glocol field experience.
+pattern also independently supported by prior hands-on field experience.
 **Derivation:** Both.
 
 ---
@@ -217,7 +217,7 @@ specify power topology.
 **Sources:** Raspberry Pi Forums threads (SD card corruption from unclean power
 loss; read-only/overlayfs as mitigation); core-electronics.com.au and
 science.miketyka.com write-ups on the same root cause.
-**Derivation:** Both — this pattern was directly informed by hands-on Glocol
+**Derivation:** Both — this pattern was directly informed by hands-on prior
 Raspberry Pi field deployment experience and cross-checked against multiple
 independent public sources describing the identical failure mechanism.
 
