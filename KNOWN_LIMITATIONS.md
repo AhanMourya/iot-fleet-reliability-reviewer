@@ -62,14 +62,14 @@ One suspected-but-unconfirmed pattern, explicitly left open:
 
 Structural limitations of this eval itself:
 
-- **Not blinded.** The same author (a single Claude instance, across one
-  extended session) wrote both the ground truth and the reviewer runs for
-  all 100 corpus cases. This is the single biggest reason these eval
-  numbers should be read as a structured, good-faith self-check rather
-  than an independent validation. A genuinely blinded eval — ground truth
-  authored by one party, reviewer runs produced by a separate model
-  instance or a human with no access to it — is the natural next step
-  before treating these percentages as a trustworthy external benchmark.
+- **Not blinded.** The same author (working across one continuous session)
+  wrote both the ground truth and the reviewer runs for all 100 corpus
+  cases. This is the single biggest reason these eval numbers should be
+  read as a structured, good-faith self-check rather than an independent
+  validation. A genuinely blinded eval — ground truth authored by one
+  party, reviewer runs produced independently by someone or something with
+  no access to it — is the natural next step before treating these
+  percentages as a trustworthy external benchmark.
 - **Compound findings are excluded from all recall/false-positive/severity
   calculations.** They appear in both ground truth and run files for
   narrative completeness but were never part of the scored 21-pattern

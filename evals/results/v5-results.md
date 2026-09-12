@@ -140,13 +140,13 @@ resolved-and-forgotten history.)*
 
 **Structural limitations of this eval, unchanged from earlier batches:**
 
-- **Not blinded.** The same author (this Claude instance, across a single
-  extended session) wrote both the ground truth and the reviewer runs for
+- **Not blinded.** The same author (working across a single continuous
+  session) wrote both the ground truth and the reviewer runs for
   all 100 cases. Every batch's results file has flagged this. It's the
   single biggest reason these numbers should be read as "a structured,
   good-faith self-check" rather than "an independent validation." A truly
   blinded eval — ground truth authored by one party, reviewer runs
-  produced by a separate model instance or human with no access to it —
+  produced independently by someone or something with no access to it —
   is the natural next step before treating these percentages as a
   trustworthy external benchmark.
 - **Compound findings are excluded from all recall/FP/severity

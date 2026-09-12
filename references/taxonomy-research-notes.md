@@ -61,11 +61,11 @@ with the repo layout in Project Plan V2 Section 11.
 
 **Domain/field experience (prior fleet-engineering work):**
 - Raspberry Pi / Greengrass sensor fleet deployment experience, as previously
-  described to Claude, informed prioritization of P1 (SD card corruption from
-  unclean shutdown) and C1/C4 (reconnect and offline-buffering behavior) as
-  high-value, concrete checks — genericized per your instruction; no specific
-  incident details from that work are asserted here beyond what you have
-  actually described in this project.
+  described in this project's planning history, informed prioritization of
+  P1 (SD card corruption from unclean shutdown) and C1/C4 (reconnect and
+  offline-buffering behavior) as high-value, concrete checks — genericized
+  per instruction; no specific incident details from that work are asserted
+  here beyond what has actually been described in this project.
 
 ## Major candidate patterns rejected and why
 

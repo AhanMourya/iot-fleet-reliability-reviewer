@@ -5,13 +5,13 @@ deployment plan against a researched failure-mode taxonomy, using a locked
 severity rubric and validated by a 100-case blinded-ground-truth evaluation
 corpus.
 
-This is not framed as "an AI skill" or "a Claude Code prompt," because that
-undersells what's actually here. The intellectual contribution of this
-project is the **taxonomy**, the **severity rubric**, and the **eval
-corpus** — three versioned, researched artifacts that would still be
-valuable if you swapped out the underlying model entirely. AI is the
-execution mechanism that applies them to a specific deployment plan; it is
-not the thing being built.
+This is not framed as a prompt or a one-off script, because that undersells
+what's actually here. The intellectual contribution of this project is the
+**taxonomy**, the **severity rubric**, and the **eval corpus** — three
+versioned, researched artifacts that would still be valuable if the
+execution mechanism behind the reviewer changed entirely. Whatever runs the
+review process applies them to a specific deployment plan; it is not the
+thing being built.
 
 ## Origin
 
@@ -148,7 +148,7 @@ this eval (most importantly: it is not yet a blinded evaluation).
 
 ```
 iot-deployment-reviewer/
-  SKILL.md                          # the review process (portable; also packaged as a Claude Code skill)
+  SKILL.md                          # the review process (portable; also packaged for skill-based tooling)
   KNOWN_LIMITATIONS.md              # open issues, honestly documented
   references/
     taxonomy-v2.md                  # 21 failure-mode sub-patterns
@@ -169,59 +169,59 @@ iot-deployment-reviewer/
 
 The core artifacts here — the taxonomy, the severity rubric, and the review
 process SKILL.md describes — are **model- and product-agnostic**. None of
-them depend on Claude Code specifically; they're a researched checklist and
-a decision procedure that any sufficiently capable LLM (or, in principle, a
-careful human reviewer) can apply to a deployment plan. Claude Code's skill
-format is one convenient packaging of that process, not the primary way to
-think about this project. There's more than one reasonable way to actually
-run a review, so pick whichever fits how you work.
+them depend on any specific tool; they're a researched checklist and a
+decision procedure that any sufficiently capable reviewer (automated or, in
+principle, a careful human) can apply to a deployment plan. Packaging this
+as a loadable skill for a given tool is one convenient way to run the
+process, not the primary way to think about this project. There's more
+than one reasonable way to actually run a review, so pick whichever fits
+how you work.
 
-### Option A: Using this without Claude Code (zero installation)
+### Option A: Manual review (zero installation)
 
-This is the simplest path and requires nothing beyond a plain Claude.ai
-conversation:
+This is the simplest path and requires nothing beyond a text interface
+capable of following written instructions and holding a conversation:
 
-1. Open a new chat with Claude.
+1. Open a new conversation in whatever tool you use for this kind of task.
 2. Paste in the contents of `references/taxonomy-v2.md` and
    `references/severity-rubric.md`.
 3. Paste in your deployment plan.
-4. Ask Claude to review the plan against the taxonomy, following the same
+4. Ask for a review of the plan against the taxonomy, following the same
    process `SKILL.md` describes: check all 21 patterns individually, cite
    evidence (or explicit silence) for each finding, apply the severity
    rubric's decision procedure, and use the locked output format from the
    taxonomy/rubric's own examples.
 
 You can also paste in `SKILL.md` itself alongside the two reference files
-if you want Claude to follow its review process and formatting rules
-exactly rather than reconstructing them from the taxonomy and rubric alone
-— it's a plain-text set of instructions, not something that requires
-Claude Code to interpret. This path is a fully supported way to use this
-project, not a fallback.
+if you want the review process and formatting rules followed exactly
+rather than reconstructed from the taxonomy and rubric alone — it's a
+plain-text set of instructions, not something that requires any particular
+tool to interpret. This path is a fully supported way to use this project,
+not a fallback.
 
-### Option B: Claude Code skill (local install)
+### Option B: Loadable skill (local install)
 
-If you already use Claude Code and want the review process available
-automatically when you mention a deployment plan, without pasting files in
-each time:
+If your tooling supports loading custom skill definitions — instruction
+files that trigger automatically for matching requests, without pasting
+files in each time — you can install this project as one:
 
 1. Clone or download this repository.
 2. Copy (or symlink) the `iot-deployment-reviewer/` folder into your
-   Claude Code skills directory (wherever your Claude Code setup looks for
-   custom skills — typically a `skills/` folder in your project or user
-   config; check your Claude Code version's docs if you're not sure where
-   that is).
-3. Restart Claude Code / reload skills if your setup requires it.
+   tool's skills directory (this varies by tool — typically a `skills/`
+   folder in a project or user config; check your tool's own documentation
+   if you're not sure where that is).
+3. Restart or reload skills if your setup requires it.
 
 Paste or describe your IoT/sensor fleet deployment plan in free text
 (architecture, connectivity, power, update process, security posture) and
-ask Claude Code to review it — e.g., "review this deployment plan for
-reliability issues" or "check this fleet plan against known IoT failure
-patterns." The skill's description is written to trigger on this kind of
-request; you don't need to invoke it by name.
+ask for a review — e.g., "review this deployment plan for reliability
+issues" or "check this fleet plan against known IoT failure patterns." The
+skill's description is written to trigger on this kind of request; you
+don't need to invoke it by name.
 
-**A Claude Code plugin marketplace listing is planned but not live yet.**
-Until then, the manual copy/symlink step above is the only way to install
-the skill locally — there's no one-click install. See
+**A marketplace-style listing for easier discovery is planned but not live
+yet.** Until then, the manual copy/symlink step above is the only way to
+install the skill locally — there's no one-click install. See
 `examples/sample-review-output.md` for exactly what the output looks like
 either way.
 
