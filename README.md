@@ -264,3 +264,46 @@ current eval corpus doesn't catch:
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).
+
+## Hybrid architecture (Phase 2)
+
+The reviewer is a hybrid of LLM judgment and deterministic code, split
+along an explicit line documented in `ARCHITECTURE.md`:
+
+- **LLM-assisted**: reading a deployment plan's free text and judging
+  whether it satisfies each of the 21 taxonomy patterns' evidence
+  criteria. This is genuine language understanding and is not made
+  deterministic.
+- **Deterministic**: everything downstream of that judgment — checking
+  that all 21 patterns were accounted for, that severity/confidence
+  values are valid, and computing summary counts from the findings
+  themselves rather than trusting a separately-stated number.
+
+The installable `iot_reliability_reviewer` package implements the
+deterministic half:
+
+```
+pip install -e .
+iot-review review path/to/plan.md --human
+iot-review evaluate --runs-dir evals/results/raw-runs --corpus-dir evals/corpus
+```
+
+`reconciliation.py` replaces the informal reconciliation-gate instruction
+that lived in `SKILL.md`, and the inline gate in the original
+`evals/harness.py`, with real, unit-tested code. It's what makes the
+project's two historical reconciliation bugs (case-12, case-28, case-49 —
+a claimed summary count that didn't match the actual findings)
+structurally impossible rather than merely unobserved: there is no longer
+a separate summary field for a model or a person to get wrong.
+
+### Run it as a container (GitHub Packages)
+
+Each GitHub Release publishes a container image to the GitHub Container
+Registry, so no local Python setup is needed:
+
+```
+docker pull ghcr.io/ahanmourya/iot-fleet-reliability-reviewer:latest
+docker run --rm ghcr.io/ahanmourya/iot-fleet-reliability-reviewer evaluate
+```
+
+The package page on GitHub shows download counts per version.

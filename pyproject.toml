@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iot-reliability-reviewer"
+version = "1.1.0"
+description = "Deterministic reconciliation and evaluation layer for the IoT Fleet Deployment Reliability Reviewer"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Homepage = "https://github.com/AhanMourya/iot-fleet-reliability-reviewer"
+Issues = "https://github.com/AhanMourya/iot-fleet-reliability-reviewer/issues"
+
+[project.scripts]
+iot-review = "iot_reliability_reviewer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["iot_reliability_reviewer*"]

@@ -84,3 +84,29 @@ Structural limitations of this eval itself:
 - **The eval-only `PatternID:` annotation** used by `evals/harness.py` to
   match findings to taxonomy IDs is not part of the production SKILL.md
   output format shown to end users — see `evals/harness.py`'s docstring.
+
+---
+
+## Update (Phase 2): reconciliation-arithmetic bug class — now structurally resolved
+
+Previously documented as: a specific reconciliation-arithmetic error shape
+(a compound finding's severity tag miscounted into a claimed summary line)
+recurred twice (case-28, case-49), plus a separate single-count mismatch
+(case-12), and were excluded from v1–v5 scoring by the reconciliation gate
+rather than fixed on insufficient evidence to generalize a prompt change.
+
+**As of Phase 2, this is resolved structurally, not just patched.** The
+`iot_reliability_reviewer` package's schema (see `ARCHITECTURE.md`) has no
+field for a model to separately state a summary count in at all —
+`reconciliation.py` computes `Findings: X Critical, Y High, Z Advisory`
+directly from the parsed findings list every time. A summary disagreeing
+with its own findings is no longer a possible output shape, which is a
+stronger claim than "hasn't recurred in N batches": it's enforced by
+`tests/test_reconciliation.py`'s regression tests built directly from the
+case-12/28/49 historical data, and confirmed in `evals/results/v6-results.md`
+by re-scoring the full 100-case corpus through the new engine (0 invalid
+cases, versus 3 under the old gate).
+
+This does not change anything about the taxonomy, severity rubric, or the
+underlying pattern-detection judgment quality — those are unaffected and
+remain open to the same kinds of gaps as any LLM-based review step.
